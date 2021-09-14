@@ -1,5 +1,5 @@
 const myPromise = new Promise((resolve, reject) => {
-    if (Math.random() * 100 < 90) {
+    if (Math.random() * 3000 < 2000) {
         console.log('resolving the promise ...');
         resolve('Hello, Promises!');
     }
