@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="click" onclick="setTimeout(start, 3000)" />
+
+    <script>
+      const downloads = [
+        {
+          id: 1,
+          title: "Recipe",
+          status: "Done",
+        },
+        {
+          id: 2,
+          title: "Workouts",
+          status: "Pending",
+        },
+        {
+          id: 3,
+          title: "Passwords",
+          status: "Pending",
+        },
+        {
+          id: 4,
+          title: "To Do 2021",
+          status: "Pending",
+        },
+        {
+          id: 5,
+          title: "Books",
+          status: "Failed",
+        },
+      ];
+      let intervalId = 0;
+      
+      function start() {
+        console.log("Start after 3 seconds");
+        intervalId = setInterval(changeStatus, 5000);
+      }
+
+      function changeStatus() {
+        let isClearInterval = checkPendingStatus(downloads);
+        if (isClearInterval) {
+            console.log("Interval stopped")
+            clearInterval(intervalId);
+            return;
+        }
+
+        console.log("Check started");
+
+        for (let i = 0; i < downloads.length; i++) {
+          if (downloads[i].status === "Pending") {
+            downloads[i].status = "Done";
+            console.log(downloads);
+            break;
+          }
+        }
+      }
+
+      function checkPendingStatus(downloads) {
+        let result = downloads.find((obj) => obj.status === "Pending");
+        return result === undefined ? true : false;
+      }
+    </script>
+  </body>
+</html>
